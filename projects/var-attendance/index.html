@@ -1,39 +1,455 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-VAR & Football Attendance
-</title>
+  <title>VAR and Football Attendance | Aldo Vata</title>
 
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --card-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --danger: #f87171;
+      --border: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    .hero {
+      padding: 90px 0 60px;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.95)),
+        url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      margin: 0 0 20px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 1.15rem;
+      color: var(--muted);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #020617;
+      font-weight: bold;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    section {
+      padding: 55px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--card), var(--card-2));
+      border: 1px solid var(--border);
+      padding: 22px;
+      border-radius: 16px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .stat {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .flow-step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .flow-step span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    .chart-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+    }
+
+    .chart {
+      width: 100%;
+      min-height: 430px;
+    }
+
+    .finding.good {
+      border-left: 5px solid var(--accent-2);
+    }
+
+    .finding.warning {
+      border-left: 5px solid var(--accent);
+    }
+
+    .finding.negative {
+      border-left: 5px solid var(--danger);
+    }
+
+    footer {
+      padding: 35px 0;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding-top: 60px;
+      }
+
+      .chart {
+        min-height: 360px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>
-VAR and Football Attendance:
-An Empirical Analysis
-</h1>
+  <header class="hero">
+    <div class="container">
+      <p><a href="../../index.html">← Back to Portfolio</a></p>
 
-<p>
-Senior Thesis
-</p>
+      <h1>VAR and Football Attendance</h1>
 
-<h2>
-Research Question
-</h2>
+      <p>
+        An empirical senior thesis analyzing whether the introduction of Video Assistant Referee
+        technology changed live football attendance in the English Premier League compared with
+        the English Championship.
+      </p>
 
-<p>
-Did the introduction of VAR affect
-football attendance?
-</p>
+      <div class="button-row">
+        <a class="button" href="https://github.com/AldoVata/VAR-and-Football-Attendance-An-Empirical-Analysis-Senior-Thesis-" target="_blank">
+          View GitHub Repository
+        </a>
 
-<div id="attendanceChart"></div>
+        <a class="button secondary" href="#charts">
+          View Visuals
+        </a>
+      </div>
+    </div>
+  </header>
 
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<script src="charts.js"></script>
+  <main>
+
+    <section>
+      <div class="container">
+        <h2>Research Question</h2>
+
+        <p class="section-intro">
+          Did the introduction of VAR reduce live football attendance? This project uses a
+          Difference-in-Differences design comparing Premier League teams affected by VAR
+          after 2019 with Championship teams that did not use VAR during the same period.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Treatment Group</h3>
+            <p>Premier League teams after VAR was introduced in the 2019/20 season.</p>
+          </div>
+
+          <div class="card">
+            <h3>Control Group</h3>
+            <p>English Championship teams that did not use VAR during the same comparison period.</p>
+          </div>
+
+          <div class="card">
+            <h3>Main Outcome</h3>
+            <p>Average stadium attendance by team and season.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Dataset Overview</h2>
+
+        <p class="section-intro">
+          These cards summarize the scope of the data used in the project. The exact values
+          are calculated from the CSV file loaded into this page.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <div class="stat" id="totalRows">—</div>
+            <h3>Total Rows</h3>
+            <p>Team-season observations loaded from the dataset.</p>
+          </div>
+
+          <div class="card">
+            <div class="stat" id="seasonRange">—</div>
+            <h3>Seasons Covered</h3>
+            <p>Range of seasons included in the analysis.</p>
+          </div>
+
+          <div class="card">
+            <div class="stat" id="leagueCount">2</div>
+            <h3>Leagues Compared</h3>
+            <p>Premier League and English Championship.</p>
+          </div>
+
+          <div class="card">
+            <div class="stat">2019</div>
+            <h3>VAR Introduction</h3>
+            <p>Post-treatment period begins with the 2019/20 Premier League season.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Methodology</h2>
+
+        <p class="section-intro">
+          The project turns raw football performance and attendance data into a causal comparison
+          using Difference-in-Differences regression.
+        </p>
+
+        <div class="flow">
+          <div class="flow-step">
+            <span>Step 1</span>
+            Scrape Football Data
+          </div>
+
+          <div class="flow-step">
+            <span>Step 2</span>
+            Clean Team Names
+          </div>
+
+          <div class="flow-step">
+            <span>Step 3</span>
+            Merge Attendance Data
+          </div>
+
+          <div class="flow-step">
+            <span>Step 4</span>
+            Create VAR Treatment
+          </div>
+
+          <div class="flow-step">
+            <span>Step 5</span>
+            Run DiD Regression
+          </div>
+
+          <div class="flow-step">
+            <span>Step 6</span>
+            Visualize Results
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="charts">
+      <div class="container">
+        <h2>Interactive Visuals</h2>
+
+        <p class="section-intro">
+          These charts are generated directly from the project CSV file using JavaScript and Plotly.
+        </p>
+
+        <div class="chart-card">
+          <h3>Average Attendance Over Time</h3>
+          <p class="section-intro">
+            Compares attendance trends between the treated group and control group over time.
+          </p>
+          <div id="attendanceTrend" class="chart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Before vs After VAR</h3>
+          <p class="section-intro">
+            Compares average attendance before and after the 2019 VAR introduction.
+          </p>
+          <div id="beforeAfterChart" class="chart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Regression Results</h3>
+          <p class="section-intro">
+            Visual summary of the main coefficients from the Difference-in-Differences model.
+          </p>
+          <div id="regressionChart" class="chart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Attendance vs Points</h3>
+          <p class="section-intro">
+            Shows whether stronger team performance is associated with higher attendance.
+          </p>
+          <div id="scatterChart" class="chart"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Offsides Per 90 Over Time</h3>
+          <p class="section-intro">
+            Shows the variable with the strongest statistically significant change in the model.
+          </p>
+          <div id="offsidesTrend" class="chart"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Key Findings</h2>
+
+        <div class="grid">
+          <div class="card finding negative">
+            <h3>VAR Attendance Effect</h3>
+            <p>
+              VAR was associated with a decline of about 1,233 fans, but the effect was not
+              statistically significant at conventional levels.
+            </p>
+          </div>
+
+          <div class="card finding good">
+            <h3>Offsides Changed Significantly</h3>
+            <p>
+              Offsides per 90 showed the strongest statistically significant change after VAR.
+            </p>
+          </div>
+
+          <div class="card finding warning">
+            <h3>COVID Complication</h3>
+            <p>
+              Attendance trends around 2020 are heavily affected by COVID-19 restrictions,
+              making interpretation more difficult.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Skills Demonstrated</h2>
+
+        <div class="grid">
+          <div class="card"><h3>Python</h3><p>Used for scraping, cleaning, and preparing football data.</p></div>
+          <div class="card"><h3>Pandas</h3><p>Used to organize and merge team-season datasets.</p></div>
+          <div class="card"><h3>Regression Analysis</h3><p>Used Difference-in-Differences to estimate VAR's effect.</p></div>
+          <div class="card"><h3>Data Visualization</h3><p>Converted thesis findings into interactive web charts.</p></div>
+        </div>
+
+        <div class="button-row">
+          <a class="button" href="https://github.com/AldoVata/VAR-and-Football-Attendance-An-Empirical-Analysis-Senior-Thesis-" target="_blank">
+            View Full Project Code
+          </a>
+
+          <a class="button secondary" href="../../index.html">
+            Back to Portfolio
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Built by Aldo Vata | Data Analytics Portfolio
+    </div>
+  </footer>
+
+  <script src="charts.js"></script>
 
 </body>
-
 </html>
