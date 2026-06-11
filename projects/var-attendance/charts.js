@@ -1,4 +1,4 @@
-const DATA_PATH = "data/var_attendance.csv";
+const DATA_PATH = "data/Prem_And_Championship_Data.csv";
 
 const chartLayoutBase = {
   paper_bgcolor: "rgba(0,0,0,0)",
