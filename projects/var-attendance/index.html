@@ -388,35 +388,68 @@
     </section>
 
     <section>
-      <div class="container">
-        <h2>Key Findings</h2>
+  <div class="container">
+    <h2>Key Findings</h2>
 
-        <div class="grid">
-          <div class="card finding negative">
-            <h3>VAR Attendance Effect</h3>
-            <p>
-              VAR was associated with a decline of about 1,233 fans, but the effect was not
-              statistically significant at conventional levels.
-            </p>
-          </div>
+    <div class="grid">
 
-          <div class="card finding good">
-            <h3>Offsides Changed Significantly</h3>
-            <p>
-              Offsides per 90 showed the strongest statistically significant change after VAR.
-            </p>
-          </div>
-
-          <div class="card finding warning">
-            <h3>COVID Complication</h3>
-            <p>
-              Attendance trends around 2020 are heavily affected by COVID-19 restrictions,
-              making interpretation more difficult.
-            </p>
-          </div>
-        </div>
+      <div class="card finding negative">
+        <h3>VAR and Attendance</h3>
+        <p>
+          The Difference-in-Differences model estimates that VAR was associated with
+          a decline of roughly <strong>1,233 fans per match</strong> for Premier League
+          teams relative to comparable Championship teams after 2019.
+        </p>
+        <p>
+          The p-value of <strong>0.159</strong> means the attendance effect does not meet
+          conventional statistical significance thresholds, but the negative direction
+          supports the project’s central argument that VAR may have contributed to reduced
+          in-stadium attendance through interruptions, delayed decisions, and changes to
+          matchday experience.
+        </p>
       </div>
-    </section>
+
+      <div class="card finding good">
+        <h3>Offsides Changed Strongly After VAR</h3>
+        <p>
+          Offsides per 90 showed the clearest statistical change in the model.
+          The coefficient of approximately <strong>1,303</strong> was positive and
+          statistically significant at the <strong>1% level</strong>.
+        </p>
+        <p>
+          This suggests that VAR had a measurable impact on match dynamics, especially
+          around offside enforcement.
+        </p>
+      </div>
+
+      <div class="card finding good">
+        <h3>Performance Still Matters</h3>
+        <p>
+          Points showed a positive coefficient of approximately <strong>146</strong>
+          and was statistically significant at the <strong>10% level</strong>.
+        </p>
+        <p>
+          This indicates that team performance remained an important driver of attendance
+          patterns, even when accounting for VAR, league group, and season effects.
+        </p>
+      </div>
+
+      <div class="card finding warning">
+        <h3>COVID-19 Was a Major Attendance Shock</h3>
+        <p>
+          The 2020 season produced a large negative attendance effect, reflecting the
+          severe disruption caused by COVID-19 restrictions.
+        </p>
+        <p>
+          Because COVID overlapped with the early post-VAR period, the post-2019 attendance
+          drop should be interpreted alongside broader external shocks affecting stadium
+          attendance.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <section>
       <div class="container">
