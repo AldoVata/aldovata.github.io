@@ -1,65 +1,442 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Aldo Vata Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <style>
+  <title>Aldo Vata Portfolio</title>
 
-        body {
-            font-family: Arial;
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px;
-        }
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-2: #111827;
+      --card: rgba(17, 24, 39, 0.85);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: #334155;
+    }
 
-        .project-card {
+    * {
+      box-sizing: border-box;
+    }
 
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-top: 20px;
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(135deg, #020617, #0f172a 55%, #111827);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
 
-            border-radius: 10px;
-        }
+    a {
+      text-decoration: none;
+    }
 
-        a {
-            text-decoration: none;
-            color: blue;
-        }
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
 
-    </style>
+    nav {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .tag {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1;
+      margin: 0 0 18px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 700px;
+      font-size: 1.15rem;
+      margin-bottom: 28px;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: #020617;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .button.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-card {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .mini-stats {
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-stat {
+      background: rgba(31, 41, 55, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+
+    section {
+      padding: 45px 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .project-card.featured {
+      border-left: 5px solid var(--accent);
+    }
+
+    .project-card h3 {
+      margin-top: 0;
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      color: var(--muted);
+    }
+
+    .tools {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #bae6fd;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      background: rgba(31, 41, 55, 0.85);
+      border: 1px solid var(--border);
+      padding: 9px 13px;
+      border-radius: 999px;
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+      }
+
+      nav {
+        align-items: flex-start;
+        gap: 14px;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<h1>Aldo Vata</h1>
+  <div class="container">
 
-<p>
-Data Analyst | Data Engineering Student
-</p>
+    <nav>
+      <a href="index.html" class="logo">Aldo Vata</a>
 
-<div class="project-card featured">
-  <h3>VAR and Football Attendance</h3>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="https://github.com/AldoVata" target="_blank">GitHub</a>
+        <a href="mailto:aldovata1218@gmail.com">Contact</a>
+      </div>
+    </nav>
 
-  <p>
-    An empirical senior thesis analyzing whether the introduction of VAR affected
-    live football attendance in the English Premier League compared with the
-    English Championship.
-  </p>
+    <header class="hero">
+      <div>
+        <div class="tag">Data Analytics Portfolio</div>
 
-  <p>
-    <strong>Tools:</strong> Python, Pandas, Excel, Difference-in-Differences,
-    Regression Analysis, Plotly, GitHub Pages
-  </p>
+        <h1>Aldo Vata</h1>
 
-  <a href="projects/var-attendance/" class="button">
-    View Visual Case Study
-  </a>
+        <p>
+          Data Analyst and Data Engineering student focused on statistical analysis,
+          data visualization, machine learning, and building projects that turn raw data
+          into clear, decision-ready insights.
+        </p>
 
-  <a href="https://github.com/AldoVata/VAR-and-Football-Attendance-An-Empirical-Analysis-Senior-Thesis-" 
-     target="_blank" 
-     class="button secondary">
-    View GitHub Repo
-  </a>
-</div>
+        <div class="button-row">
+          <a class="button" href="#projects">View Projects</a>
+          <a class="button secondary" href="https://github.com/AldoVata" target="_blank">GitHub Profile</a>
+          <a class="button secondary" href="mailto:aldovata1218@gmail.com">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Portfolio Highlights</h3>
+
+        <div class="mini-stats">
+          <div class="mini-stat">
+            <strong>DiD Analysis</strong>
+            VAR and football attendance thesis
+          </div>
+
+          <div class="mini-stat">
+            <strong>Python + SQL</strong>
+            Data cleaning, scraping, modeling, and visualization
+          </div>
+
+          <div class="mini-stat">
+            <strong>Data Storytelling</strong>
+            Interactive visuals built with GitHub Pages and Plotly
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="projects">
+      <h2 class="section-title">Featured Projects</h2>
+
+      <p class="section-subtitle">
+        A selection of projects focused on sports analytics, causal inference,
+        machine learning, and data engineering.
+      </p>
+
+      <div class="projects">
+
+        <div class="project-card featured">
+          <h3>VAR and Football Attendance</h3>
+
+          <p>
+            An empirical senior thesis analyzing whether the introduction of VAR affected
+            live football attendance in the English Premier League compared with the
+            English Championship.
+          </p>
+
+          <div class="tools">
+            <span class="tool">Python</span>
+            <span class="tool">Pandas</span>
+            <span class="tool">Excel</span>
+            <span class="tool">Difference-in-Differences</span>
+            <span class="tool">Regression Analysis</span>
+            <span class="tool">Plotly</span>
+            <span class="tool">GitHub Pages</span>
+          </div>
+
+          <div class="button-row">
+            <a class="button" href="projects/var-attendance/">View Visual Case Study</a>
+
+            <a class="button secondary"
+               href="https://github.com/AldoVata/VAR-and-Football-Attendance-An-Empirical-Analysis-Senior-Thesis-"
+               target="_blank">
+              View GitHub Repo
+            </a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Premier League Match Outcome Prediction</h3>
+
+          <p>
+            Machine learning project using football data to predict match outcomes
+            through feature engineering and classification models.
+          </p>
+
+          <div class="tools">
+            <span class="tool">Python</span>
+            <span class="tool">Scikit-learn</span>
+            <span class="tool">Random Forest</span>
+            <span class="tool">Gradient Boosting</span>
+          </div>
+
+          <div class="button-row">
+            <a class="button secondary" href="#">Coming Soon</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Flight Delay Analysis</h3>
+
+          <p>
+            Big data project analyzing airline delay patterns using Hadoop, Hive,
+            Python, and predictive modeling.
+          </p>
+
+          <div class="tools">
+            <span class="tool">Hadoop</span>
+            <span class="tool">Hive</span>
+            <span class="tool">Python</span>
+            <span class="tool">Machine Learning</span>
+          </div>
+
+          <div class="button-row">
+            <a class="button secondary" href="#">Coming Soon</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+
+      <p class="section-subtitle">
+        Tools and methods used across my data analytics, data engineering, and machine learning projects.
+      </p>
+
+      <div class="skills">
+        <span class="skill">Python</span>
+        <span class="skill">Pandas</span>
+        <span class="skill">NumPy</span>
+        <span class="skill">SQL</span>
+        <span class="skill">Excel</span>
+        <span class="skill">Scikit-learn</span>
+        <span class="skill">Matplotlib</span>
+        <span class="skill">Plotly</span>
+        <span class="skill">Regression Analysis</span>
+        <span class="skill">Difference-in-Differences</span>
+        <span class="skill">Hadoop</span>
+        <span class="skill">Hive</span>
+        <span class="skill">AWS</span>
+        <span class="skill">GitHub Pages</span>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Built by Aldo Vata ·
+        <a href="https://github.com/AldoVata" target="_blank">GitHub</a> ·
+        <a href="mailto:aldovata1218@gmail.com">Email</a>
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
