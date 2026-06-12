@@ -11,7 +11,7 @@
     :root {
       --bg: #0f172a;
       --bg-2: #111827;
-      --card: rgba(17, 24, 39, 0.85);
+      --card: rgba(17, 24, 39, 0.88);
       --text: #e5e7eb;
       --muted: #9ca3af;
       --accent: #38bdf8;
@@ -160,12 +160,14 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 16px;
+      color: var(--muted);
     }
 
     .mini-stat strong {
       display: block;
       color: var(--accent);
       font-size: 1.4rem;
+      margin-bottom: 4px;
     }
 
     section {
@@ -185,25 +187,23 @@
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: 1fr;
       gap: 22px;
+      max-width: 850px;
     }
 
     .project-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 26px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-    }
-
-    .project-card.featured {
       border-left: 5px solid var(--accent);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
     }
 
     .project-card h3 {
       margin-top: 0;
-      font-size: 1.35rem;
+      font-size: 1.45rem;
     }
 
     .project-card p {
@@ -246,6 +246,10 @@
       color: var(--muted);
       border-top: 1px solid var(--border);
       margin-top: 40px;
+    }
+
+    footer a {
+      color: var(--accent);
     }
 
     @media (max-width: 850px) {
@@ -291,7 +295,7 @@
         </p>
 
         <div class="button-row">
-          <a class="button" href="#projects">View Projects</a>
+          <a class="button" href="#projects">View Project</a>
           <a class="button secondary" href="https://github.com/AldoVata" target="_blank">GitHub Profile</a>
           <a class="button secondary" href="mailto:aldoigli12@gmail.com">Contact Me</a>
         </div>
@@ -307,8 +311,8 @@
           </div>
 
           <div class="mini-stat">
-            <strong>Python + SQL</strong>
-            Data cleaning, scraping, modeling, and visualization
+            <strong>Python + Data Cleaning</strong>
+            Scraping, merging, cleaning, and preparing football datasets
           </div>
 
           <div class="mini-stat">
@@ -320,22 +324,28 @@
     </header>
 
     <section id="projects">
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title">Featured Project</h2>
 
       <p class="section-subtitle">
-        A selection of projects focused on sports analytics, causal inference,
-        machine learning, and data engineering.
+        My current featured project focuses on sports analytics, causal inference,
+        and visual data storytelling.
       </p>
 
       <div class="projects">
 
-        <div class="project-card featured">
+        <div class="project-card">
           <h3>VAR and Football Attendance</h3>
 
           <p>
             An empirical senior thesis analyzing whether the introduction of VAR affected
             live football attendance in the English Premier League compared with the
             English Championship.
+          </p>
+
+          <p>
+            The project uses Difference-in-Differences regression, football performance
+            controls, attendance data, and interactive visualizations to explain how VAR
+            may have shaped attendance patterns and match dynamics after 2019.
           </p>
 
           <div class="tools">
@@ -356,46 +366,6 @@
                target="_blank">
               View GitHub Repo
             </a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Premier League Match Outcome Prediction</h3>
-
-          <p>
-            Machine learning project using football data to predict match outcomes
-            through feature engineering and classification models.
-          </p>
-
-          <div class="tools">
-            <span class="tool">Python</span>
-            <span class="tool">Scikit-learn</span>
-            <span class="tool">Random Forest</span>
-            <span class="tool">Gradient Boosting</span>
-          </div>
-
-          <div class="button-row">
-            <a class="button secondary" href="#">Coming Soon</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <h3>Flight Delay Analysis</h3>
-
-          <p>
-            Big data project analyzing airline delay patterns using Hadoop, Hive,
-            Python, and predictive modeling.
-          </p>
-
-          <div class="tools">
-            <span class="tool">Hadoop</span>
-            <span class="tool">Hive</span>
-            <span class="tool">Python</span>
-            <span class="tool">Machine Learning</span>
-          </div>
-
-          <div class="button-row">
-            <a class="button secondary" href="#">Coming Soon</a>
           </div>
         </div>
 
@@ -431,7 +401,7 @@
       <p>
         Built by Aldo Vata ·
         <a href="https://github.com/AldoVata" target="_blank">GitHub</a> ·
-        <a href="mailto:aldovata1218@gmail.com">Email</a>
+        <a href="mailto:aldoigli12@gmail.com">Email</a>
       </p>
     </footer>
 
